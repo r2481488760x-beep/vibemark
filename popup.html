@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VibeMark</title>
+    <link rel="stylesheet" href="src/popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header>
+        <div>
+          <h1>VibeMark</h1>
+          <p>Frontend annotation + coordinates</p>
+        </div>
+        <span class="status" id="status">ready</span>
+      </header>
+
+      <button class="primary" id="toggle">Start Annotation Layer</button>
+
+      <section>
+        <h2>Available On</h2>
+        <p>Works on localhost, staging, and production http/https pages. Browser system pages and some cross-origin iframes cannot be injected.</p>
+      </section>
+    </main>
+    <script src="src/popup.js"></script>
+  </body>
+</html>

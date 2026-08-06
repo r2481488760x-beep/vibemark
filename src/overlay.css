@@ -1,0 +1,312 @@
+#vibemark-root,
+#vibemark-root * {
+  box-sizing: border-box;
+}
+
+#vibemark-root {
+  color: #f8fafc;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1.2;
+  position: fixed;
+  z-index: 2147483647;
+}
+
+.vm-canvas {
+  cursor: crosshair;
+  height: 100vh;
+  left: 0;
+  pointer-events: auto;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.vm-canvas.vm-select-mode {
+  cursor: default;
+}
+
+.vm-layer {
+  height: 100vh;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.vm-toolbar {
+  align-items: center;
+  background: rgba(19, 20, 24, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  display: flex;
+  gap: 8px;
+  left: 120px;
+  min-height: 48px;
+  padding: 8px;
+  pointer-events: auto;
+  position: fixed;
+  top: 88px;
+  user-select: none;
+}
+
+.vm-drag {
+  color: #8b909a;
+  cursor: grab;
+  font-size: 18px;
+  padding: 0 2px;
+}
+
+.vm-btn {
+  align-items: center;
+  background: #22252c;
+  border: 1px solid #3a3f49;
+  border-radius: 7px;
+  color: #f8fafc;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 800;
+  height: 32px;
+  justify-content: center;
+  min-width: 34px;
+  padding: 0 8px;
+}
+
+.vm-btn svg {
+  display: block;
+  height: 18px;
+  width: 18px;
+}
+
+.vm-btn:hover,
+.vm-btn.vm-active {
+  background: #ef3f4f;
+  border-color: #ef3f4f;
+}
+
+.vm-divider {
+  background: #3a3f49;
+  height: 28px;
+  width: 1px;
+}
+
+.vm-color {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  height: 24px;
+  padding: 0;
+  width: 24px;
+}
+
+.vm-color.vm-light-color {
+  box-shadow: inset 0 0 0 1px #8b909a;
+}
+
+.vm-color.vm-active {
+  border-color: #fff;
+}
+
+.vm-color.vm-light-color.vm-active {
+  border-color: #228be6;
+}
+
+.vm-slider {
+  accent-color: #ef3f4f;
+  width: 110px;
+}
+
+.vm-panel {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+  color: #17191f;
+  max-height: min(640px, calc(100vh - 96px));
+  overflow: auto;
+  padding: 14px;
+  pointer-events: auto;
+  position: fixed;
+  right: 24px;
+  top: 88px;
+  width: 320px;
+}
+
+.vm-panel-head {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.vm-panel h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.vm-panel-head button {
+  background: #fff;
+  border: 1px solid #d7dae2;
+  border-radius: 7px;
+  color: #17191f;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  height: 30px;
+  min-width: 30px;
+}
+
+.vm-stat {
+  border-top: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  padding: 10px 0;
+  white-space: pre-wrap;
+}
+
+.vm-list {
+  display: grid;
+  gap: 8px;
+}
+
+.vm-item {
+  background: #f6f7f9;
+  border: 1px solid #e2e5ea;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.vm-item.vm-item-selected {
+  background: #eef6ff;
+  border-color: #228be6;
+  box-shadow: 0 0 0 2px rgba(34, 139, 230, 0.15);
+}
+
+.vm-item strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.vm-item-meta {
+  color: #667085;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  margin-bottom: 7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vm-item textarea {
+  background: #fff;
+  border: 1px solid #d7dae2;
+  border-radius: 7px;
+  color: #17191f;
+  cursor: text;
+  font: inherit;
+  font-size: 12px;
+  min-height: 54px;
+  padding: 7px;
+  resize: vertical;
+  width: 100%;
+}
+
+.vm-hud {
+  background: rgba(17, 19, 24, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  color: #f8fafc;
+  cursor: grab;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  left: 20px;
+  padding: 8px 10px;
+  pointer-events: auto;
+  position: fixed;
+  top: 20px;
+  white-space: pre;
+}
+
+.vm-cursor-tip {
+  background: rgba(17, 19, 24, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #f8fafc;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  padding: 5px 7px;
+  pointer-events: none;
+  position: fixed;
+  white-space: nowrap;
+}
+
+.vm-element-tag {
+  background: #111318;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  max-width: min(520px, calc(100vw - 32px));
+  overflow: hidden;
+  padding: 5px 7px;
+  pointer-events: none;
+  position: fixed;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vm-note-popover {
+  background: #fff;
+  border: 1px solid #d7dae2;
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+  color: #17191f;
+  padding: 10px;
+  pointer-events: auto;
+  position: fixed;
+  width: 280px;
+}
+
+.vm-note-popover textarea {
+  border: 1px solid #d7dae2;
+  border-radius: 7px;
+  font: inherit;
+  min-height: 78px;
+  padding: 8px;
+  resize: vertical;
+  width: 100%;
+}
+
+.vm-note-popover div {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.vm-note-popover button {
+  background: #111318;
+  border: 1px solid #111318;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  min-height: 32px;
+  padding: 0 12px;
+}
+
+.vm-note-popover button.vm-secondary {
+  background: #fff;
+  border-color: #d7dae2;
+  color: #17191f;
+}

@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "VibeMark Frontend Annotator",
+  "description": "Annotate live webpages with coordinates, measurements, selectors, screenshots, and AI-ready change requests.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "VibeMark",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "downloads",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*",
+    "file:///*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "file:///*"
+      ],
+      "js": [
+        "src/content.js"
+      ],
+      "css": [
+        "src/overlay.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "toggle-vibemark": {
+      "suggested_key": {
+        "default": "Alt+Shift+V",
+        "mac": "Alt+Shift+V"
+      },
+      "description": "Toggle VibeMark"
+    }
+  }
+}
