@@ -9,7 +9,7 @@ It is built for the moment when "move this a little" is not enough. VibeMark cap
 - Live cursor coordinates in viewport space and full-page space.
 - Hovered element dimensions and best-effort CSS selector.
 - Rectangles, ovals, lines, arrows, pen strokes, and text annotations.
-- `Shift` constraints for squares, circles, vertical lines, and vertical arrows.
+- `Shift` constraints for squares, circles, and horizontal/vertical line or arrow snapping.
 - Click-to-pin measurement in select mode.
 - `Command + C` / `Ctrl + C` to copy pinned coordinates or the selected annotation.
 - AI-ready `Copy` output with markdown plus raw JSON.
@@ -53,8 +53,8 @@ To test `examples/test-page.html` directly as a local file, enable `Allow access
 - Pointer: inspect and pin coordinates.
 - Rectangle: draw a rectangle; hold `Shift` for a square.
 - Oval: draw an oval; hold `Shift` for a circle.
-- Line: draw a line; hold `Shift` for a vertical line.
-- Arrow: draw an arrow; hold `Shift` for a vertical arrow.
+- Line: draw a line; hold `Shift` to snap horizontal or vertical.
+- Arrow: draw an arrow; hold `Shift` to snap horizontal or vertical.
 - Pen: freehand drawing.
 - Text: add a text note.
 - Color dots: choose annotation color.

@@ -8,8 +8,8 @@
     select: "选择元素并查看坐标/尺寸",
     rect: "矩形；按 Shift 画正方形",
     ellipse: "圆形；按 Shift 画正圆",
-    line: "直线；按 Shift 画垂直线",
-    arrow: "箭头；按 Shift 画垂直箭头",
+    line: "直线；按 Shift 吸附水平/垂直",
+    arrow: "箭头；按 Shift 吸附水平/垂直",
     pen: "画笔",
     text: "文字"
   };
@@ -1080,7 +1080,11 @@
       };
     }
     if (type === "line" || type === "arrow") {
-      return { x: start.x, y: point.y };
+      const dx = point.x - start.x;
+      const dy = point.y - start.y;
+      return Math.abs(dx) >= Math.abs(dy)
+        ? { x: point.x, y: start.y }
+        : { x: start.x, y: point.y };
     }
     return point;
   }
