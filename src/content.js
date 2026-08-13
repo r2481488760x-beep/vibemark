@@ -27,6 +27,7 @@
     selectedId: null,
     toolbarDrag: null,
     hudDrag: null,
+    panelDrag: null,
     panelOpen: false,
     lastPoint: { x: 0, y: 0 }
   };
@@ -196,7 +197,11 @@
       <div class="vm-stat" data-role="stats"></div>
       <div class="vm-list" data-role="list"></div>
     `;
-    panelEl.querySelector('[data-action="close"]').addEventListener("click", togglePanel);
+    const head = panelEl.querySelector(".vm-panel-head");
+    const close = panelEl.querySelector('[data-action="close"]');
+    head.addEventListener("pointerdown", startPanelDrag);
+    close.addEventListener("pointerdown", (event) => event.stopPropagation());
+    close.addEventListener("click", togglePanel);
     return panelEl;
   }
 
@@ -301,6 +306,33 @@
     state.hudDrag = null;
     window.removeEventListener("pointermove", dragHud, true);
     window.removeEventListener("pointerup", stopHudDrag, true);
+  }
+
+  function startPanelDrag(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const rect = panel.getBoundingClientRect();
+    panel.style.left = `${rect.left}px`;
+    panel.style.top = `${rect.top}px`;
+    panel.style.right = "auto";
+    state.panelDrag = {
+      offsetX: event.clientX - rect.left,
+      offsetY: event.clientY - rect.top
+    };
+    window.addEventListener("pointermove", dragPanel, true);
+    window.addEventListener("pointerup", stopPanelDrag, true);
+  }
+
+  function dragPanel(event) {
+    if (!state.panelDrag) return;
+    panel.style.left = `${clamp(event.clientX - state.panelDrag.offsetX, 8, window.innerWidth - panel.offsetWidth - 8)}px`;
+    panel.style.top = `${clamp(event.clientY - state.panelDrag.offsetY, 8, window.innerHeight - panel.offsetHeight - 8)}px`;
+  }
+
+  function stopPanelDrag() {
+    state.panelDrag = null;
+    window.removeEventListener("pointermove", dragPanel, true);
+    window.removeEventListener("pointerup", stopPanelDrag, true);
   }
 
   function onPointerDown(event) {
